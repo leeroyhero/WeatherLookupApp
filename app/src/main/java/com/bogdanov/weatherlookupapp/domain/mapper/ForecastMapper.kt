@@ -1,4 +1,4 @@
-package com.bogdanov.weatherlookupapp.data.mapper
+package com.bogdanov.weatherlookupapp.domain.mapper
 
 import com.bogdanov.weatherlookupapp.data.network.dto.ForecastItemDto
 import com.bogdanov.weatherlookupapp.domain.model.Forecast

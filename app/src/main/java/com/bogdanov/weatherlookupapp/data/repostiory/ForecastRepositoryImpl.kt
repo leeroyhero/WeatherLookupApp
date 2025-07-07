@@ -1,6 +1,6 @@
 package com.bogdanov.weatherlookupapp.data.repostiory
 
-import com.bogdanov.weatherlookupapp.data.mapper.ForecastMapper
+import com.bogdanov.weatherlookupapp.domain.mapper.ForecastMapper
 import com.bogdanov.weatherlookupapp.data.network.service.WeatherApiService
 import com.bogdanov.weatherlookupapp.domain.model.Forecast
 import com.bogdanov.weatherlookupapp.domain.repository.ForecastRepository
