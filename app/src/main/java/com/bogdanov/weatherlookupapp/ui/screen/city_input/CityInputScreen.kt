@@ -1,0 +1,41 @@
+package com.bogdanov.weatherlookupapp.ui.screen.city_input
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.bogdanov.weatherlookupapp.ui.navigation.Routes
+
+@Composable
+fun CityInputScreen(navController: NavController) {
+    var city by remember { mutableStateOf("") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        TextField(
+            value = city,
+            onValueChange = { city = it },
+            label = { Text("Enter city name") },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = {
+                if (city.isNotBlank()) {
+                    navController.navigate(Routes.ForecastList.createRoute(city))
+                }
+            },
+            modifier = Modifier.align(Alignment.End)
+        ) {
+            Text("See Forecast")
+        }
+    }
+}
