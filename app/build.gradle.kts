@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.retrofit.moshi)
     implementation(libs.moshi)
     implementation(libs.moshi.kotlin)
+    kapt(libs.moshi.codegen)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
