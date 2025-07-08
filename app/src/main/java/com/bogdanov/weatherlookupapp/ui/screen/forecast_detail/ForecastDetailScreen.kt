@@ -6,11 +6,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.bogdanov.weatherlookupapp.domain.model.Forecast
+import com.bogdanov.weatherlookupapp.ui.components.CityTopBar
 import com.bogdanov.weatherlookupapp.ui.shared.SharedForecastViewModel
 
 @Composable
 fun ForecastDetailScreen(
+    navController: NavController,
     sharedForecastViewModel: SharedForecastViewModel = hiltViewModel(),
     viewModel: ForecastDetailViewModel = hiltViewModel()
 ) {
@@ -20,26 +23,38 @@ fun ForecastDetailScreen(
 
     val uiState = viewModel.uiState.collectAsState().value
 
-    when (uiState) {
-        is ForecastDetailState.Ready -> {
-            ForecastDetailContent(forecast = uiState.forecast)
+    Scaffold(
+        topBar = {
+            CityTopBar(
+                cityName = sharedForecastViewModel.cityName,
+                onBackClick = { navController.popBackStack() }
+            )
         }
-
-        is ForecastDetailState.Loading -> {
+    ) { innerPadding ->
+        when (uiState) {
+            is ForecastDetailState.Ready -> {
+                ForecastDetailContent(
+                    forecast = uiState.forecast,
+                    modifier = Modifier.padding(innerPadding)
+                )
+            }
+            is ForecastDetailState.Loading -> {
+                // Optionally show a loading indicator
+            }
         }
     }
 }
 
 @Composable
-private fun ForecastDetailContent(forecast: Forecast) {
+private fun ForecastDetailContent(
+    forecast: Forecast,
+    modifier: Modifier = Modifier
+) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Text("Forecast Details", style = MaterialTheme.typography.headlineSmall)
-        Spacer(modifier = Modifier.height(16.dp))
-
         Text(
             text = "${forecast.temperature}°F",
             style = MaterialTheme.typography.titleLarge

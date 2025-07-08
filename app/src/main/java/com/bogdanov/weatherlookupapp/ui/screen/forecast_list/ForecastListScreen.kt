@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.bogdanov.weatherlookupapp.domain.model.Forecast
+import com.bogdanov.weatherlookupapp.ui.components.CityTopBar
 import com.bogdanov.weatherlookupapp.ui.navigation.Routes
 import com.bogdanov.weatherlookupapp.ui.shared.SharedForecastViewModel
 
@@ -30,16 +31,19 @@ fun ForecastListScreen(
 
     when (val state = uiState) {
         is ForecastListState.Ready -> {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp)
-            ) {
-                Text("Forecast", style = MaterialTheme.typography.headlineSmall)
-                Spacer(modifier = Modifier.height(16.dp))
-
+            Scaffold(
+                topBar = {
+                    CityTopBar(
+                        cityName = sharedForecastViewModel.cityName,
+                        onBackClick = { navController.popBackStack() }
+                    )
+                }
+            ) { innerPadding ->
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding)
+                        .padding(16.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     items(state.list) { forecast ->

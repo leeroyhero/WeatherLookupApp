@@ -45,7 +45,7 @@ fun AppNavGraph() {
                     navController.getBackStackEntry("main_graph")
                 }
                 val sharedViewModel = hiltViewModel<SharedForecastViewModel>(parentEntry)
-                ForecastDetailScreen(sharedForecastViewModel = sharedViewModel)
+                ForecastDetailScreen(navController, sharedForecastViewModel = sharedViewModel)
             }
         }
     }

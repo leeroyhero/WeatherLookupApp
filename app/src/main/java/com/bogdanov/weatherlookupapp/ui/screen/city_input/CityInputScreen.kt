@@ -24,6 +24,7 @@ fun CityInputScreen(
         val state = uiState
         if (state is CityInputState.Success) {
             sharedForecastViewModel.setForecasts(state.list)
+            sharedForecastViewModel.setCityName(city)
             navController.navigate(Routes.ForecastList.route)
             viewModel.resetState()
         }

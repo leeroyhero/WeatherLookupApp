@@ -14,6 +14,13 @@ class SharedForecastViewModel @Inject constructor() : ViewModel() {
     var selectedForecast: Forecast? = null
         private set
 
+    var cityName: String = ""
+        private set
+
+    fun setCityName(name: String) {
+        cityName = name
+    }
+
     fun setForecasts(list: List<Forecast>) {
         forecastList = list
     }
