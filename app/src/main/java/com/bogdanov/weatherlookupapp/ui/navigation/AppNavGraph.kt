@@ -40,8 +40,12 @@ fun AppNavGraph() {
                 ForecastListScreen(navController, sharedForecastViewModel = sharedViewModel)
             }
 
-            composable(Routes.ForecastDetail.route) {
-                ForecastDetailScreen()
+            composable(Routes.ForecastDetail.route) { backStackEntry ->
+                val parentEntry = remember(backStackEntry) {
+                    navController.getBackStackEntry("main_graph")
+                }
+                val sharedViewModel = hiltViewModel<SharedForecastViewModel>(parentEntry)
+                ForecastDetailScreen(sharedForecastViewModel = sharedViewModel)
             }
         }
     }
