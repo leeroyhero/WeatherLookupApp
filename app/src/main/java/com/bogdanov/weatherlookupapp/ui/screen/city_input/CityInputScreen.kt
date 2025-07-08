@@ -7,9 +7,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.bogdanov.weatherlookupapp.R
 import com.bogdanov.weatherlookupapp.ui.navigation.Routes
 import com.bogdanov.weatherlookupapp.ui.shared.SharedForecastViewModel
 
@@ -42,7 +44,7 @@ fun CityInputScreen(
             TextField(
                 value = city,
                 onValueChange = { city = it },
-                label = { Text("Enter city name") },
+                label = { Text(stringResource(R.string.enter_city_name)) },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -52,7 +54,7 @@ fun CityInputScreen(
                 onClick = { viewModel.fetchForecast(city) },
                 modifier = Modifier.align(Alignment.End)
             ) {
-                Text("See Forecast")
+                Text(stringResource(R.string.see_forecast))
             }
 
             Spacer(modifier = Modifier.height(16.dp))
