@@ -39,7 +39,6 @@ fun ForecastDetailScreen(
                 )
             }
             is ForecastDetailState.Loading -> {
-                // Optionally show a loading indicator
             }
         }
     }
