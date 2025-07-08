@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ForecastDetailScreen(timestamp: Long) {
+fun ForecastDetailScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -15,6 +15,6 @@ fun ForecastDetailScreen(timestamp: Long) {
     ) {
         Text("Forecast Details", style = MaterialTheme.typography.headlineSmall)
         Spacer(modifier = Modifier.height(16.dp))
-        Text("Timestamp: $timestamp")
+        Text("Timestamp: $1")
     }
 }
